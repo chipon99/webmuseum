@@ -1,0 +1,770 @@
+<html><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>&#x412;&#x438;&#x440;&#x442;&#x443;&#x430;&#x43b;&#x44c;&#x43d;&#x44b;&#x439; &#x43c;&#x443;&#x437;&#x435;&#x439;</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    background: #f5f5f5;
+}
+
+.header {
+    background: linear-gradient(45deg, #2c3e50, #3498db);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/8A7A51DE-88F8-4CDA-BEE0-B48B7E8C1C28.jpeg') center center;
+    background-size: cover;
+    opacity: 0.15;
+    z-index: 1;
+}
+
+.header h1, .header p {
+    position: relative;
+    z-index: 2;
+}
+
+.header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.search-container {
+    position: relative;
+    max-width: 600px;
+    margin: 1rem auto;
+    z-index: 2;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: 2px solid #ffffff;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    background: #ffffff;
+}
+
+.search-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #2c3e50;
+}
+
+.voice-search-button {
+    position: absolute;
+    right: 40px; 
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #2c3e50;
+    padding: 5px;
+    transition: color 0.3s;
+}
+
+.voice-search-button:hover {
+    color: #3498db;
+}
+
+.voice-search-button.listening {
+    color: #e74c3c;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: translateY(-50%) scale(1); }
+    50% { transform: translateY(-50%) scale(1.1); }
+    100% { transform: translateY(-50%) scale(1); }
+}
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+	color: black; /* или другой цвет */
+    display: none;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.search-result-item {
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.search-result-item:hover {
+    background: #f5f5f5;
+}
+
+.header p:first-of-type {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 1.5rem 0;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.nav {
+    background: white;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav a {
+    color: #2c3e50;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.nav a:hover {
+    color: #3498db;
+    background-color: #f8f9fa;
+    transform: translateY(-2px);
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.exhibit {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.exhibit:hover {
+    transform: translateY(-5px);
+}
+
+.exhibit-image {
+    width: 100%;
+    height: 200px;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.exhibit-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.exhibit-info {
+    padding: 1.5rem;
+}
+
+.exhibit-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 80%;
+    max-height: 80%;
+    overflow: auto;
+}
+
+.close-modal {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+.subtitle {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    font-style: italic;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.main-title {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 1rem 0;
+    font-size: 2.5rem;
+    background: linear-gradient(to right, #ffffff, #e8f6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.yakut-keyboard {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: none;
+    grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+    gap: 5px;
+    margin-top: 5px;
+    z-index: 1000;
+}
+
+.yakut-key {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    background: #f8f9fa;
+    transition: all 0.2s;
+    color: black;
+}
+
+.yakut-key:hover {
+    background: #e9ecef;
+    transform: translateY(-1px);
+}
+
+.keyboard-toggle {
+    position: absolute;
+    right: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #2c3e50;
+    padding: 5px;
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+    <h1>Виртуальный музей</h1>
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Поиск по сайту..." id="searchInput">
+        <button class="keyboard-toggle">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+                <path d="M20 5H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 12H4V7h16v10zm-9-9h2v2h-2zm0 3h2v2h-2zM8 8h2v2H8zm0 3h2v2H8zm-3 0h2v2H5zm0-3h2v2H5zm3 6h8v2H8zm6-3h2v2h-2zm0-3h2v2h-2zm3 3h2v2h-2zm0-3h2v2h-2z" fill="currentColor"/>
+            </svg>
+        </button>
+        <div class="yakut-keyboard" id="yakutKeyboard"></div>
+        <button class="search-button">
+            <svg width="20" height="20" viewBox="0 0 20 20">
+                <path d="M19.4 18.6l-5.3-5.3c1.1-1.4 1.8-3.2 1.8-5.2 0-4.4-3.6-8-8-8S0 3.6 0 8s3.6 8 8 8c2 0 3.8-0.7 5.2-1.8l5.3 5.3c0.2 0.2 0.5 0.3 0.7 0.3s0.5-0.1 0.7-0.3c0.4-0.4 0.4-1 0-1.4zM2 8c0-3.3 2.7-6 6-6s6 2.7 6 6-2.7 6-6 6-6-2.7-6-6z" fill="currentColor"/>
+            </svg>
+        </button>
+        <button class="voice-search-button">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+                <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z" fill="currentColor"/>
+            </svg>
+        </button>
+        <div class="search-results" id="searchResults"></div>
+    </div>
+    <p class="main-title">ОБРАЗ ЖЕНЩИНЫ В ЯКУТИИ: ФОРМИРОВАНИЕ ИСТОРИЧЕСКОЙ ПАМЯТИ</p>
+    <p class="subtitle">Открытие исторических и культурных горизонтов о женщинах Якутии</p>
+</header>
+
+<nav class="nav">
+    <ul>
+        <li><a href="https://museum.com/gallery">&#x413;&#x430;&#x43b;&#x435;&#x440;&#x435;&#x44f;</a></li>
+        <li><a href="https://museum.com/exhibitions">&#x412;&#x44b;&#x441;&#x442;&#x430;&#x432;&#x43a;&#x438;</a></li>
+        <li><a href="https://museum.com/collections">&#x41a;&#x43e;&#x43b;&#x43b;&#x435;&#x43a;&#x446;&#x438;&#x438;</a></li>
+        <li><a href="https://museum.com/articles">&#x421;&#x442;&#x430;&#x442;&#x44c;&#x438;</a></li>
+        <li><a href="https://museum.com/about">&#x41e; &#x43c;&#x443;&#x437;&#x435;&#x435;</a></li>
+    </ul>
+</nav>
+
+<main class="gallery">
+    <div class="exhibit fade-in">
+        <div class="exhibit-image">
+            <img src="images/1/1.webp" alt="Психология менталитета женщины в традициях народа саха 1" />
+        </div>
+        <div class="exhibit-info">
+            <h3 class="exhibit-title">Психология менталитета женщины в традициях народа саха</h3>
+            <p>Исследование духовного наследия и роли якутской женщины в традиционной культуре</p>
+        </div>
+    </div>
+
+    <div class="exhibit fade-in">
+        <div class="exhibit-image">
+            <img src="images/2/0.png" alt="Образ женщины в историко-правовых аспектах 0" />
+        </div>
+        <div class="exhibit-info">
+            <h3 class="exhibit-title">Образ женщины в историко-правовых аспектах</h3>
+            <p>Трансформация образа женщины в обществе через призму законов</p>
+        </div>
+    </div>
+
+    <div class="exhibit fade-in">
+        <div class="exhibit-image">
+            <img src="images/3/Рисунок1.png" alt="Образ женщины в духовной и материальной культуре 1" />
+        </div>
+        <div class="exhibit-info">
+            <h3 class="exhibit-title">Образ женщины в духовной и материальной культуре</h3>
+            <p>Рассмотрение образа женщины в эпосе, художественной литературе и изобразительном искусстве</p>
+        </div>
+    </div>
+	
+	<div class="exhibit fade-in">
+        <div class="exhibit-image">
+            <img src="images/4/Рисунок1.png" alt="Образ женщины в скульптурах города Якутска 1" />
+        </div>
+        <div class="exhibit-info">
+            <h3 class="exhibit-title">Образ женщины в скульптурах города Якутска</h3>
+            <p>Символический аспект современных скульптур Якутска</p>
+        </div>
+    </div>
+</main>
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&#xd7;</span>
+        <h2 id="modal-title"></h2>
+        <p id="modal-description"></p>
+		<div class="modal-gallery" id="modal-gallery"></div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>&#xa9; 2024 Виртуальный музей. Все права защищены.</p>
+</footer>
+
+<script>document.addEventListener('DOMContentLoaded', () => {
+  const exhibits = document.querySelectorAll('.exhibit');
+  const modal = document.getElementById('modal');
+  const modalTitle = document.getElementById('modal-title');
+  const modalGallery = document.getElementById('modal-gallery');
+  const modalDescription = document.getElementById('modal-description');
+  const closeModal = document.querySelector('.close-modal');
+  const navLinks = document.querySelectorAll('.nav a');
+  const images = {
+  'Психология менталитета женщины в традициях народа саха': {
+    additionalImages: [
+	  {
+		type: 'image',
+		content: 'images/1/1.webp' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/1/2.webp' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/1/3.webp' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/1/4.webp' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/1/5.webp' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/1/6.webp' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/1/7.webp' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/1/8.webp' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/1/9.webp' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/1/10.webp' // Замените на путь к вашему PNG-файлу
+	  },
+	]
+  },
+  'Образ женщины в историко-правовых аспектах': {
+    additionalImages: [
+	  {
+		type: 'image',
+		content: 'images/2/0.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/2/1.webp' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/2/2.webp' // Замените на путь к вашему PNG-файлу
+	  }
+	  ,
+	  {
+		type: 'image',
+		content: 'images/2/3.webp' // Замените на путь к вашему PNG-файлу
+	  }
+	  ,
+	  {
+		type: 'image',
+		content: 'images/2/4.webp' // Замените на путь к вашему PNG-файлу
+	  }
+	  ,
+	  {
+		type: 'image',
+		content: 'images/2/5.webp' // Замените на путь к вашему PNG-файлу
+	  }
+	  ,
+	  {
+		type: 'image',
+		content: 'images/2/6.webp' // Замените на путь к вашему PNG-файлу
+	  }
+	  ,
+	  {
+		type: 'image',
+		content: 'images/2/7.webp' // Замените на путь к вашему PNG-файлу
+	  }
+	]
+  },
+  'Образ женщины в духовной и материальной культуре': {
+    additionalImages: [
+	  {
+		type: 'image',
+		content: 'images/3/Рисунок1.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/3/Рисунок2.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/3/Рисунок3.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/3/Рисунок4.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/3/Рисунок5.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/3/Рисунок6.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/3/Рисунок7.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/3/Рисунок8.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/3/Рисунок9.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/3/Рисунок10.png' // Замените на путь к вашему PNG-файлу
+	  }
+	]
+  },
+  'Образ женщины в скульптурах города Якутска': {
+    additionalImages: [
+	  {
+		type: 'image',
+		content: 'images/4/Рисунок1.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/4/Рисунок2.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/4/Рисунок3.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/4/Рисунок4.png' // Замените на путь к вашему PNG-файлу
+	  }
+	]
+  },
+  };
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const href = link.getAttribute('href');
+      console.log(`Переход по ссылке: ${href}`);
+    });
+  });
+  exhibits.forEach(exhibit => {
+    exhibit.addEventListener('click', () => {
+      const title = exhibit.querySelector('.exhibit-title').textContent;
+      const description = exhibit.querySelector('p').textContent;
+      modalTitle.textContent = title;
+      modalDescription.textContent = description;
+	  const image = images[title];
+	  const galleryHTML = image.additionalImages.map(image => `
+							<div class="modal-image">
+							  <img src="${image.content}" alt="${exhibit.title}" />
+							</div>
+						  `).join('');
+	  modalGallery.innerHTML = galleryHTML;
+	  
+      modal.style.display = 'block';
+    });
+  });
+  closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+  window.addEventListener('click', e => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+  const observerCallback = (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fade-in');
+        observer.unobserve(entry.target);
+      }
+    });
+  };
+  const observerOptions = {
+    threshold: 0.1
+  };
+  const observer = new IntersectionObserver(observerCallback, observerOptions);
+  exhibits.forEach(exhibit => {
+    exhibit.classList.remove('fade-in');
+    observer.observe(exhibit);
+  });
+  const searchInput = document.getElementById('searchInput');
+  const searchResults = document.getElementById('searchResults');
+  const searchableContent = [{
+    title: 'Психология менталитета женщины в традициях народа саха',
+    type: 'exhibit'
+  }, {
+    title: 'Образ женщины в историко-правовых аспектах',
+    type: 'exhibit'
+  }, {
+    title: 'Образ женщины в духовной и материальной культуре',
+    type: 'exhibit'
+  }, {
+    title: 'Образ женщины в скульптурах города Якутска',
+    type: 'exhibit'
+  }, {
+    title: 'О музее',
+    type: 'page'
+  }, {
+    title: 'Выставки',
+    type: 'page'
+  }, {
+    title: 'Коллекции',
+    type: 'page'
+  }, {
+    title: 'Статьи',
+    type: 'page'
+  }, {
+    title: 'Галерея',
+    type: 'page'
+  }];
+  searchInput.addEventListener('input', e => {
+    const searchTerm = e.target.value.toLowerCase();
+    if (searchTerm.length < 2) {
+      searchResults.style.display = 'none';
+      return;
+    }
+    const matches = searchableContent.filter(item => item.title.toLowerCase().includes(searchTerm));
+    if (matches.length > 0) {
+      searchResults.innerHTML = matches.map(item => `
+                <div class="search-result-item">
+                    ${item.title}
+                    <small>(${item.type === 'exhibit' ? 'Экспонат' : 'Страница'})</small>
+                </div>
+            `).join('');
+      searchResults.style.display = 'block';
+    } else {
+      searchResults.innerHTML = '<div class="search-result-item">Ничего не найдено</div>';
+      searchResults.style.display = 'block';
+    }
+  });
+  document.addEventListener('click', e => {
+    if (!searchResults.contains(e.target) && e.target !== searchInput) {
+      searchResults.style.display = 'none';
+    }
+  });
+  console.log(searchResults);
+  searchResults.addEventListener('click', e => {
+    if (e.target.classList.contains('search-result-item')) {
+      const searchTerm = e.target.textContent.trim();
+      console.log('Выбрали:', searchTerm);
+	  const modalTitle = document.getElementById('modal-title');
+	  console.log('modalTitle:', modalTitle.textContent);
+	  modal.style.display = 'block';
+      searchResults.style.display = 'none';
+      searchInput.value = '';
+    }
+  });
+  const voiceSearchButton = document.querySelector('.voice-search-button');
+  const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+  recognition.lang = 'ru-RU';
+  recognition.maxResults = 10;
+  voiceSearchButton.addEventListener('click', () => {
+    try {
+      voiceSearchButton.classList.add('listening');
+      recognition.start();
+    } catch (err) {
+      console.error('Speech recognition error:', err);
+    }
+  });
+  recognition.addEventListener('result', event => {
+    const transcript = Array.from(event.results).map(result => result[0]).map(result => result.transcript).join('');
+    searchInput.value = transcript;
+    searchInput.dispatchEvent(new Event('input'));
+    voiceSearchButton.classList.remove('listening');
+  });
+  recognition.addEventListener('end', () => {
+    voiceSearchButton.classList.remove('listening');
+  });
+  recognition.addEventListener('error', event => {
+    console.error('Speech recognition error:', event.error);
+    voiceSearchButton.classList.remove('listening');
+  });
+  const yakutLetters = 'һөҕүҥ';
+  const keyboardToggle = document.querySelector('.keyboard-toggle');
+  const yakutKeyboard = document.getElementById('yakutKeyboard');
+  yakutLetters.split('').forEach(letter => {
+    const keyButton = document.createElement('div');
+    keyButton.className = 'yakut-key';
+    keyButton.textContent = letter;
+    keyButton.addEventListener('click', () => {
+      const cursorPos = searchInput.selectionStart;
+      const textBefore = searchInput.value.substring(0, cursorPos);
+      const textAfter = searchInput.value.substring(cursorPos);
+      searchInput.value = textBefore + letter + textAfter;
+      searchInput.focus();
+      searchInput.setSelectionRange(cursorPos + 1, cursorPos + 1);
+      searchInput.dispatchEvent(new Event('input'));
+    });
+    yakutKeyboard.appendChild(keyButton);
+  });
+  keyboardToggle.addEventListener('click', () => {
+    const searchRect = searchInput.getBoundingClientRect();
+    yakutKeyboard.style.top = `${searchRect.bottom + window.scrollY}px`;
+    yakutKeyboard.style.display = yakutKeyboard.style.display === 'grid' ? 'none' : 'grid';
+  });
+  document.addEventListener('click', e => {
+    if (!yakutKeyboard.contains(e.target) && !keyboardToggle.contains(e.target) && !searchInput.contains(e.target)) {
+      yakutKeyboard.style.display = 'none';
+    }
+  });
+  searchInput.addEventListener('focus', () => {
+    const searchRect = searchInput.getBoundingClientRect();
+    yakutKeyboard.style.top = `${searchRect.bottom + window.scrollY}px`;
+    yakutKeyboard.style.display = 'grid';
+  });
+  searchInput.addEventListener('blur', e => {
+    if (!yakutKeyboard.contains(e.relatedTarget)) {
+      setTimeout(() => {
+        yakutKeyboard.style.display = 'none';
+      }, 200);
+    }
+  });
+});</script>
+
+</body></html>
