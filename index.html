@@ -410,6 +410,26 @@ body {
             <p>Символический аспект современных скульптур Якутска</p>
         </div>
     </div>
+	
+	<div class="exhibit fade-in">
+        <div class="exhibit-image">
+            <img src="images/5/1.jpg" alt="Про виртуальный музей" />
+        </div>
+        <div class="exhibit-info">
+            <h3 class="exhibit-title">Про виртуальный музей</h3>
+            <p>Перспективы развития музея</p>
+        </div>
+    </div>
+	
+	<div class="exhibit fade-in">
+        <div class="exhibit-image">
+            <img src="images/6/Рисунок1.png" alt="Женский мурал города Якутска" />
+        </div>
+        <div class="exhibit-info">
+            <h3 class="exhibit-title">Женский мурал города Якутска</h3>
+            <p>Муралы рассказывающие этно культурные коды Якутии</p>
+        </div>
+    </div>
 </main>
 
 <div id="modal" class="modal">
@@ -422,7 +442,7 @@ body {
 </div>
 
 <footer class="footer">
-    <p>&#xa9; 2024 Виртуальный музей. Все права защищены.</p>
+    <p>&#xa9; 2025 Виртуальный музей. Все права защищены.</p>
 </footer>
 
 <script>document.addEventListener('DOMContentLoaded', () => {
@@ -583,6 +603,94 @@ body {
 	  }
 	]
   },
+  'Про виртуальный музей': {
+    additionalImages: [
+	  {
+		type: 'image',
+		content: 'images/5/1.jpg' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/5/2.jpg' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/5/3.jpg' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/5/4.jpg' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/5/5.jpg' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/5/6.jpg' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/5/7.jpg' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/5/8.jpg' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/5/9.jpg' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/5/10.jpg' // Замените на путь к вашему PNG-файлу
+	  }	  
+	]
+  },
+  'Женский мурал города Якутска': {
+    additionalImages: [
+	  {
+		type: 'image',
+		content: 'images/6/Рисунок1.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/6/Рисунок2.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/6/Рисунок3.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/6/Рисунок4.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/6/Рисунок5.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/6/Рисунок6.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/6/Рисунок7.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/6/Рисунок8.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/6/Рисунок9.png' // Замените на путь к вашему PNG-файлу
+	  },
+	  {
+		type: 'image',
+		content: 'images/6/Рисунок10.png' // Замените на путь к вашему PNG-файлу
+	  }
+	]
+  },
   };
 
   navLinks.forEach(link => {
@@ -638,28 +746,44 @@ body {
   const searchableContent = [{
     title: 'Психология менталитета женщины в традициях народа саха',
     type: 'exhibit'
-  }, {
+  }, 
+  {
     title: 'Образ женщины в историко-правовых аспектах',
     type: 'exhibit'
-  }, {
+  }, 
+  {
     title: 'Образ женщины в духовной и материальной культуре',
     type: 'exhibit'
-  }, {
-    title: 'Образ женщины в скульптурах города Якутска',
+  }, 
+  {
+    title: 'Про виртуальный музей',
     type: 'exhibit'
-  }, {
+  }, 
+  {
+    title: 'Женский мурал города Якутска',
+    type: 'exhibit'
+  }, 
+  {
     title: 'О музее',
     type: 'page'
-  }, {
+  },
+  {
+    title: 'О музее',
+    type: 'page'
+  }, 
+  {
     title: 'Выставки',
     type: 'page'
-  }, {
+  }, 
+  {
     title: 'Коллекции',
     type: 'page'
-  }, {
+  }, 
+  {
     title: 'Статьи',
     type: 'page'
-  }, {
+  }, 
+  {
     title: 'Галерея',
     type: 'page'
   }];
@@ -674,7 +798,6 @@ body {
       searchResults.innerHTML = matches.map(item => `
                 <div class="search-result-item">
                     ${item.title}
-                    <small>(${item.type === 'exhibit' ? 'Экспонат' : 'Страница'})</small>
                 </div>
             `).join('');
       searchResults.style.display = 'block';
@@ -688,11 +811,17 @@ body {
       searchResults.style.display = 'none';
     }
   });
-  console.log(searchResults);
   searchResults.addEventListener('click', e => {
     if (e.target.classList.contains('search-result-item')) {
       const searchTerm = e.target.textContent.trim();
       console.log('Выбрали:', searchTerm);
+	  const image = images[searchTerm];
+	  const galleryHTML = image.additionalImages.map(image => `
+							<div class="modal-image">
+							  <img src="${image.content}" alt="${searchTerm}" />
+							</div>
+						  `).join('');
+	  modalGallery.innerHTML = galleryHTML;
 	  const modalTitle = document.getElementById('modal-title');
 	  console.log('modalTitle:', modalTitle.textContent);
 	  modal.style.display = 'block';
